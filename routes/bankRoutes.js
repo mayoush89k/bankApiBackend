@@ -4,6 +4,7 @@ import {
   depositToUser,
   errorQuery,
   filterByAmount,
+  filterByName,
   filterByUsername,
   getUserDetails,
   getUsers,
@@ -41,12 +42,16 @@ usersRoutes.put("/:id", (req, res, next) => {
 // filter by amount / by userName
 usersRoutes.get("/:id", getUserDetails);
 
-// show details of the user and filter /users?filter
-// Show details of all users /users/
+// get all users
+// filter users by name       /users?filter=name
+// filter users by username   /users?filter=username
+//filter users by amount      /users?filter=amount
 usersRoutes.get("/", (req, res, next) => {
   req.query["filter"] == "amount"
     ? filterByAmount(req, res, next)
     : req.query["filter"] == "username"
     ? filterByUsername(req, res, next)
+    : req.query["filter"] == "name"
+    ? filterByName(req, res, next)
     : getUsers(req, res, next);
 });

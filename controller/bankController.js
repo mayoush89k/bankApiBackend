@@ -180,7 +180,10 @@ export const getUsers = (req, res, next) => {
 export const filterByAmount = (req, res, next) => {
   try {
     const users = readUsersFromFile();
-    const filterUsers = users.sort((a, b) => (a.balance > b.balance ? 1 : -1));
+    const filterUsers = users.sort((a, b) => {
+      const aBalance = a.credit + a.cash
+      const bBalance = b.credit + b.cash
+      return (aBalance > bBalance ? 1 : -1)});
     res.send(filterUsers);
   } catch (error) {
     next(error);
@@ -192,7 +195,20 @@ export const filterByUsername = (req, res, next) => {
   try {
     const users = readUsersFromFile();
     const filterUsers = users.sort((a, b) =>
-      a.username > b.username ? 1 : -1
+      a.username.toLowerCase() > b.username.toLowerCase() ? 1 : -1
+    );
+    res.send(filterUsers);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* filter by Name */
+export const filterByName = (req, res, next) => {
+  try {
+    const users = readUsersFromFile();
+    const filterUsers = users.sort((a, b) =>
+      a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
     );
     res.send(filterUsers);
   } catch (error) {
