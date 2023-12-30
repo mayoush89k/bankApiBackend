@@ -29,7 +29,6 @@ export const addUser = (req, res, next) => {
       email,
       password,
       accountNumber: [randomInt(99999).toString()],
-      balance: 0,
       cash: 0,
       credit: 0,
     };
@@ -94,7 +93,6 @@ export const updateCreditToUser = (req, res, next) => {
       }
 };
 
-// ! unfinished
 /*  transferring /users:id
     from user to user
     until cash and credit run out */
