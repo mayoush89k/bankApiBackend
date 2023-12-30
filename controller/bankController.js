@@ -125,11 +125,11 @@ export const transferUserToUser = (req, res, next) => {
     // -   receiver will increase amount to his balance amount
     users[senderUserIndex] = {
       ...users[senderUserIndex],
-      paymentType: Number(users[senderUserIndex].credit) - Number(amount),
+      credit: Number(users[senderUserIndex].credit) - Number(amount),
     };
     users[receiverUserIndex] = {
       ...users[receiverUserIndex],
-      paymentType: Number(users[receiverUserIndex].credit) - Number(amount),
+      credit: Number(users[receiverUserIndex].credit) - Number(amount),
     };
 
     writeUsersToFile(users);
