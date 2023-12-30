@@ -115,7 +115,7 @@ export const transferUserToUser = (req, res, next) => {
     }
 
     //check availability of sender balance
-    if (users[senderUserIndex].credit < amount) {
+    if (users[senderUserIndex].credit < Number(amount)) {
       res.status(STATUS_CODES.FORBIDDEN);
       throw new Error(`You don't have enough credit`);
     }
