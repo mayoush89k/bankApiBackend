@@ -33,6 +33,7 @@ export const addUser = (req, res, next) => {
       credit: 0,
     };
     users.push(newUser);
+    console.log('users: ', users);
     writeUsersToFile(users);
     res.status(STATUS_CODES.CREATED).send(newUser);
   } catch (error) {
@@ -84,7 +85,7 @@ export const updateCreditToUser = (req, res, next) => {
         }
         users[userIndex] = {
           ...users[userIndex],
-          cash: users[userIndex].credit + Number(amount),
+          credit: users[userIndex].credit + Number(amount),
         };
         writeUsersToFile(users);
         res.send(users[userIndex]);
