@@ -129,7 +129,7 @@ export const transferUserToUser = (req, res, next) => {
     };
     users[receiverUserIndex] = {
       ...users[receiverUserIndex],
-      credit: Number(users[receiverUserIndex].credit) - Number(amount),
+      credit: Number(users[receiverUserIndex].credit) + Number(amount),
     };
 
     writeUsersToFile(users);
